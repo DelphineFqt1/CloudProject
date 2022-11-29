@@ -1,5 +1,5 @@
 import http from 'http';
-import {callback} from './index';
+import {callback} from './callback';
 
 export function server() {
     const server = http.createServer(async (req, res) => {

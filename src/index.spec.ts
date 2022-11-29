@@ -7,7 +7,7 @@
   });
 });*/
 
-import {callback} from './index'
+import {callback} from './callback'
 import {server} from './server'
 import http from 'http';
 
@@ -27,18 +27,18 @@ describe('get /api/v1/sysinfo', () => {
     monServer.listen(8000);
     http.get('http://localhost:8000/api/v1/sysinfo', (res) => {
       expect(res.statusCode).toBe(200);
+      monServer.close();
     });
-    monServer.close();
   });
 });
 
 describe('get url with error', () => {
   test('should return Error 404', () => {
     const monServer = server();
-    monServer.listen(8000);
-    http.get('http://localhost:8000/api/v1/sysi', (res) => {
+    monServer.listen(8001);
+    http.get('http://localhost:8001/api/v1/sysi', (res) => {
       expect(res.statusCode).toBe(404);
+      monServer.close();
     });
-    monServer.close();
   });
 });
